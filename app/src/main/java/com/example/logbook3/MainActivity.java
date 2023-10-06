@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MaterialButton buttonDivide,buttonMultiply,buttonPlus,buttonMinus,buttonEquals;
     MaterialButton button0,button1,button2,button3,button4,button5,button6,button7,button8,button9;
     MaterialButton buttonAC,buttonDot;
+    TextView resultDisplayTv;
 
 
     @Override
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         resultTv = findViewById(R.id.result_tv);
         solutionTv = findViewById(R.id.solution_tv);
+        resultDisplayTv = findViewById(R.id.result_tv);
 
         assignId(buttonC,R.id.button_c);
         assignId(buttonBrackOpen,R.id.button_open_bracket);
@@ -69,13 +71,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(buttonText.equals("AC")){
             solutionTv.setText("");
             resultTv.setText("0");
+            resultDisplayTv.setText("");
         } else if(buttonText.equals("=")){
             String finalResult = getResult(dataToCalculate);
             if (!finalResult.equals("Err")) {
                 resultTv.setText(finalResult);
-                solutionTv.setText(finalResult); // Set the solutionTv to the result
+                resultDisplayTv.setText(finalResult); // Set the solutionTv to the result
             } else {
                 resultTv.setText("Err");
+                resultDisplayTv.setText("Err");
             }
         } else if(buttonText.equals("C")){
             if (!dataToCalculate.isEmpty()) {
